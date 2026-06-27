@@ -10,10 +10,14 @@
  */
 
 import { test as base, expect } from '@playwright/test';
-import { loadSiteConfig, type SiteConfig } from '@types/site-config.types';
+import { loadSiteConfig, type SiteConfig } from '@site-types/site-config.types';
 import { HomePage } from '@pages/home.page';
 import { NavigationPage } from '@pages/navigation.page';
 import { ContactFormPage } from '@pages/contact.page';
+import { AutoRosteringPage } from '@pages/auto-rostering.page';
+import { AssistantPage } from '@pages/assistant.page';
+import { IntegrationsPage } from '@pages/integrations.page';
+import { AboutPage } from '@pages/about.page';
 
 // ── Fixture type definitions ─────────────────────────────────────────────────
 
@@ -26,6 +30,14 @@ export interface Fixtures {
   navigationPage: NavigationPage;
   /** ContactFormPage page object (does not auto-navigate) */
   contactPage: ContactFormPage;
+  /** AutoRosteringPage page object (does not auto-navigate) */
+  autoRosteringPage: AutoRosteringPage;
+  /** AssistantPage page object (does not auto-navigate) */
+  assistantPage: AssistantPage;
+  /** IntegrationsPage page object (does not auto-navigate) */
+  integrationsPage: IntegrationsPage;
+  /** AboutPage page object (does not auto-navigate) */
+  aboutPage: AboutPage;
 }
 
 // ── Extended test object ─────────────────────────────────────────────────────
@@ -66,6 +78,22 @@ export const test = base.extend<Fixtures>({
   contactPage: async ({ page, siteConfig }, use) => {
     const contactPage = new ContactFormPage(page, siteConfig);
     await use(contactPage);
+  },
+
+  autoRosteringPage: async ({ page, siteConfig }, use) => {
+    await use(new AutoRosteringPage(page, siteConfig));
+  },
+
+  assistantPage: async ({ page, siteConfig }, use) => {
+    await use(new AssistantPage(page, siteConfig));
+  },
+
+  integrationsPage: async ({ page, siteConfig }, use) => {
+    await use(new IntegrationsPage(page, siteConfig));
+  },
+
+  aboutPage: async ({ page, siteConfig }, use) => {
+    await use(new AboutPage(page, siteConfig));
   },
 });
 

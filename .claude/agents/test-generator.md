@@ -1,3 +1,16 @@
+---
+name: test-generator
+description: Reads a populated site.config.json and generates site-specific Playwright TypeScript test files. Use when a site has unique features not covered by generic suites or when expanding test coverage.
+tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
+  - WebFetch
+  - Bash
+---
+
 # Agent: test-generator
 
 ## Role

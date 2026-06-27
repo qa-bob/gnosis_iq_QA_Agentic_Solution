@@ -1,21 +1,46 @@
 /**
  * src/pages/home.page.ts
  *
- * HomePage models the site's root/homepage.
- * Uses semantic and role-based selectors to stay design-agnostic.
+ * HomePage models the Gnosis IQ homepage (https://www.gnosisiq.com).
+ * Uses semantic and role-based selectors; Gnosis IQ-specific locators
+ * are listed first, generic fallbacks below.
  */
 
 import { type Locator } from '@playwright/test';
 import { BasePage } from '@pages/base.page';
 
 export class HomePage extends BasePage {
-  // ── Hero / above-the-fold ───────────────────────────────────────────────────
+  // ── Gnosis IQ-specific elements ─────────────────────────────────────────────
 
-  /**
-   * Return the text content of the hero section.
-   * Tries common hero patterns: <section> with role="banner", first <h1>,
-   * or elements with data-testid="hero".
-   */
+  readonly heroHeading: Locator = this.page.getByRole('heading', {
+    name: /understand how your students are really doing/i,
+  });
+
+  readonly requestDemoLink: Locator = this.page.getByRole('link', { name: /request a demo/i }).first();
+  readonly learnMoreLink: Locator = this.page.getByRole('link', { name: /learn more/i }).first();
+  readonly getInTouchLink: Locator = this.page.getByRole('link', { name: /get in touch/i }).first();
+  readonly exploreAssistantLink: Locator = this.page.getByRole('link', { name: /explore the assistant/i }).first();
+
+  readonly emotionIndicatorsHeading: Locator = this.page.getByText(/emotion indicators/i).first();
+  readonly academicDataHeading: Locator = this.page.getByText(/academic data/i).first();
+  readonly predictiveInsightsHeading: Locator = this.page.getByText(/predictive insights/i).first();
+
+  readonly howItWorksHeading: Locator = this.page.getByRole('heading', { name: /how it works/i });
+  readonly gnosisAssistantHeading: Locator = this.page.getByRole('heading', { name: /gnosis assistant/i });
+  readonly faqHeading: Locator = this.page.getByRole('heading', { name: /frequently asked questions/i });
+  readonly faqItems: Locator = this.page.locator('details, [class*="faq"] [class*="item"], [class*="accordion-item"]');
+  readonly readySection: Locator = this.page.getByText(/ready to see it in action/i).first();
+
+  async clickRequestDemo(): Promise<void> {
+    await this.requestDemoLink.click();
+  }
+
+  async getFaqCount(): Promise<number> {
+    return this.faqItems.count();
+  }
+
+  // ── Generic hero / above-the-fold ───────────────────────────────────────────
+
   async getHeroText(): Promise<string> {
     // Ordered preference: banner landmark → data-testid → first section
     const candidates = [

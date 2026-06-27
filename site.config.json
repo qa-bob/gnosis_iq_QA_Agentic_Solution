@@ -1,23 +1,27 @@
-﻿{
-    "name":  "Gnosis IQ",
-    "url":  "https://www.gnosisiq.com",
-    "description":  "",
-    "industry":  "",
-    "hasContactForm":  true,
-    "expectedNavItems":  [
-
-                         ],
-    "viewports":  [
-                      "desktop",
-                      "mobile",
-                      "tablet"
-                  ],
-    "skipVisual":  false,
-    "skipForms":  false,
-    "auth":  {
-                 "required":  false,
-                 "loginUrl":  "",
-                 "username":  "",
-                 "password":  ""
-             }
+{
+    "name": "Gnosis IQ",
+    "url": "https://www.gnosisiq.com",
+    "description": "Predicting student outcomes through emotion indicators and academic data.",
+    "industry": "EdTech / Student Body Analytics",
+    "hasContactForm": true,
+    "expectedNavItems": [
+        "Auto-Rostering",
+        "Assistant",
+        "Integrations",
+        "About",
+        "Contact"
+    ],
+    "viewports": [
+        "desktop",
+        "mobile",
+        "tablet"
+    ],
+    "skipVisual": false,
+    "skipForms": false,
+    "auth": {
+        "required": false,
+        "loginUrl": "",
+        "username": "",
+        "password": ""
+    }
 }
