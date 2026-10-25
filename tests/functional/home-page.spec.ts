@@ -72,10 +72,7 @@ test.describe('Homepage Functional @functional', () => {
   });
 
   test('"Explore the Assistant" link navigates to assistant page @functional', async ({ homePage, page, siteConfig }) => {
-    if (await homePage.exploreAssistantLink.count() === 0) {
-      console.warn('[functional] "Explore the Assistant" link not found — skipping.');
-      return;
-    }
+    test.skip(await homePage.exploreAssistantLink.count() === 0, '"Explore the Assistant" link not found');
     await expect(homePage.exploreAssistantLink).toBeVisible();
     const href = await homePage.exploreAssistantLink.getAttribute('href');
     expect(href).toMatch(/assistant/i);
@@ -92,10 +89,7 @@ test.describe('Homepage Functional @functional', () => {
 
   test('FAQ section has at least one question @functional', async ({ homePage }) => {
     const count = await homePage.getFaqCount();
-    if (count === 0) {
-      console.warn('[functional] FAQ items not found with current selectors — possible class name change.');
-      return;
-    }
+    test.skip(count === 0, 'FAQ items not found with current selectors');
     expect(count, 'FAQ section should have at least one item').toBeGreaterThan(0);
   });
 
@@ -109,10 +103,7 @@ test.describe('Homepage Functional @functional', () => {
   });
 
   test('"Get in Touch" CTA links to contact page @functional', async ({ homePage }) => {
-    if (await homePage.getInTouchLink.count() === 0) {
-      console.warn('[functional] "Get in Touch" link not found on homepage — skipping.');
-      return;
-    }
+    test.skip(await homePage.getInTouchLink.count() === 0, '"Get in Touch" link not found on homepage');
     await expect(homePage.getInTouchLink).toBeVisible();
     const href = await homePage.getInTouchLink.getAttribute('href');
     expect(href).toMatch(/contact/i);

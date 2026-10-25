@@ -43,10 +43,7 @@ test.describe('Auto-Rostering Page @functional', () => {
 
   test('auto-rostering page has a CTA button or link @functional', async ({ autoRosteringPage }) => {
     const ctaCount = await autoRosteringPage.ctaButton.count();
-    if (ctaCount === 0) {
-      console.warn('[functional] No CTA link found on auto-rostering page — possible selector update needed.');
-      return;
-    }
+    test.skip(ctaCount === 0, 'No CTA link found on auto-rostering page');
     await expect(autoRosteringPage.ctaButton, 'Auto-Rostering page should have a CTA').toBeVisible();
   });
 
