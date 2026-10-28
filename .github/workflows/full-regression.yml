@@ -1,15 +1,8 @@
 name: Full Regression Suite
 
+# Manual only: the QA workflow (qa.yml) now runs smoke tests on push/PR and the scheduled suites.
 on:
-  schedule:
-    # Run daily at 06:00 UTC
-    - cron: '0 6 * * *'
   workflow_dispatch:
-    inputs:
-      site_url:
-        description: 'Override site URL (leave blank to use site.config.json)'
-        required: false
-        default: ''
 
 jobs:
   regression:
