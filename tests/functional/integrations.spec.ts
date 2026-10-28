@@ -41,10 +41,7 @@ test.describe('Integrations Page @functional', () => {
 
   test('integrations page has a CTA link @functional', async ({ integrationsPage }) => {
     const ctaCount = await integrationsPage.ctaButton.count();
-    if (ctaCount === 0) {
-      console.warn('[functional] No CTA found on integrations page — possible selector update needed.');
-      return;
-    }
+    test.skip(ctaCount === 0, 'No CTA found on integrations page');
     await expect(integrationsPage.ctaButton).toBeVisible();
   });
 

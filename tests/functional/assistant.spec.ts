@@ -48,10 +48,7 @@ test.describe('Gnosis Assistant Page @functional', () => {
 
   test('assistant page has a CTA link @functional', async ({ assistantPage }) => {
     const ctaCount = await assistantPage.ctaButton.count();
-    if (ctaCount === 0) {
-      console.warn('[functional] No CTA found on assistant page — possible selector update needed.');
-      return;
-    }
+    test.skip(ctaCount === 0, 'No CTA found on assistant page');
     await expect(assistantPage.ctaButton, 'Assistant page should have a CTA').toBeVisible();
   });
 
